@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    "name": "jsbundler",
+    "script": "./dist/index.js",
+    "node_args": "-optimize_for_size --max_old_space_size=460 --gc_interval=100",
+    "watch": false,
+    "ignore_watch": ["node_modules"],
+    "exec_mode": "fork",
+    "instances": 0
+  }]
+}
