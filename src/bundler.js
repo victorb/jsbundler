@@ -1,4 +1,4 @@
-const npm = require('npm');
+
 const request = require('request');
 const fs = require('fs');
 const webpack = require('webpack');
@@ -30,7 +30,7 @@ export function requestNpmPackage(res, packageName, callback) {
 }
 
 export function installNpmModules(res, name, config, callback) {
-  return child_process.exec(`${appRoot.path}/node_modules/.bin/npm install ${name} --prefix ${config.prefix}`, function (error, stdout, stderr) {
+  return child_process.exec(`${appRoot.path}/bundler ${name} ${config.prefix}`, function (error, stdout, stderr) {
     if (error !== null) {
       return res(Boom.badImplementation(`Server error: where was en error retrieving ${name} from npm`));
     }
@@ -39,6 +39,7 @@ export function installNpmModules(res, name, config, callback) {
 }
 
 export function buildWithWebpack(res, packageInstallPath, entry, packageToCamelcase, outPath, callback) {
+  console.log(packageInstallPath, entry, packageToCamelcase, outPath)
   const config = {
     context: packageInstallPath,
     entry: entry,
