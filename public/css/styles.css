@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Consolas", "Lucida Console", "Menlo", "Luxi Mono", monospace;
 }
@@ -11,7 +15,7 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 480px;
+  max-width: 620px;
 }
 
 a, a:visited {
@@ -30,6 +34,12 @@ a:hover {
   height: 100px;
   width: 100px;
   text-indent: -999999em;
+}
+
+.hero {
+  padding: 30px;
+  font-size: 110%;
+  text-align: center;
 }
 
 .plans {

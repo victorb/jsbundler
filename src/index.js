@@ -101,6 +101,40 @@ const routes = [
         });
       });
     }
+  },
+  {
+    method: 'POST',
+    path: '/package',
+    handler: function (req, reply) {
+      const packageName = req.payload.bundle_npm_package_input;
+      const packageInstallPath = `${appRoot.path}/packages`;
+      const packageToCamelcase = packageName.replace(/-([a-z])/g, g => g[1].toUpperCase());
+      requestNpmPackage(reply, packageName, body => {
+        const registryObject = body;
+        const latestVersion = registryObject['dist-tags'].latest;
+        const config = {
+          prefix: `${packageInstallPath}/modules`
+        };
+        const bundlePath = `/packages/${packageName}/${latestVersion}/${packageToCamelcase}.js`;
+        const existsPath = `${packageInstallPath}/${packageName}/${latestVersion}`;
+        const entry = `${packageInstallPath}/modules/node_modules/${packageName}/${registryObject.versions[latestVersion].main}`;
+        const outPath = `${packageInstallPath}/${packageName}/${latestVersion}`;
+        const deletePath = `${packageInstallPath}/modules`;
+        checkIfBundleExists(reply, existsPath, bundlePath, packageToCamelcase, () => {
+          installNpmModules(reply, packageName, config, () => {
+            buildWithWebpack(reply, packageInstallPath, entry, packageToCamelcase, outPath, () => {
+              deleteModules(reply, deletePath, () => {
+                reply.redirect(`package/${packageName}`,  {
+                  path: bundlePath,
+                  name: packageToCamelcase,
+                  env: process.env.NODE_ENV
+                });
+              });
+            });
+          });
+        });
+      });
+    }
   }
 ];
 
