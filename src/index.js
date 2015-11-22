@@ -3,6 +3,7 @@ import appRoot from 'app-root-path';
 import Hoek from 'hoek';
 import Boom from 'boom';
 import http from 'http';
+import winston from 'winston';
 import {
   installNpmModules,
   requestNpmPackage,
@@ -80,7 +81,7 @@ const routes = [
         const config = {
           prefix: `${packageInstallPath}/modules`
         };
-        const bundlePath = `/packages/${packageName}/${latestVersion}/bundle.js`;
+        const bundlePath = `/packages/${packageName}/${latestVersion}/${packageToCamelcase}.js`;
         const existsPath = `${packageInstallPath}/${packageName}/${latestVersion}`;
         const entry = `${packageInstallPath}/modules/node_modules/${packageName}/${registryObject.versions[latestVersion].main}`;
         const outPath = `${packageInstallPath}/${packageName}/${latestVersion}`;
@@ -91,7 +92,8 @@ const routes = [
               deleteModules(reply, deletePath, () => {
                 reply.view('package',  {
                   path: bundlePath,
-                  name: packageToCamelcase
+                  name: packageToCamelcase,
+                  env: process.env.NODE_ENV
                 });
               });
             });
@@ -104,7 +106,6 @@ const routes = [
 
 server.route(routes);
 
-
 server.ext('onPreResponse', function(request, reply) {
   var response = request.response;
 
@@ -114,7 +115,6 @@ server.ext('onPreResponse', function(request, reply) {
 
     var message = error.output.payload.message;
     var statusCode = error.output.statusCode || 500;
-    console.log(message)
     ctx.code = statusCode;
     ctx.httpMessage = http.STATUS_CODES[statusCode].toLowerCase();
     switch (statusCode) {

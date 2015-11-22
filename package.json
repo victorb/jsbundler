@@ -1,10 +1,10 @@
 {
-  "name": "slurp",
+  "name": "jsbundler",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node --presets es2015 -- ./src/index.js",
+    "start": "NODE_ENV=dev nodemon --ignore packages --exec babel-node --presets es2015 -- ./src/index.js",
     "build": "babel --presets es2015 src --out-dir dist",
     "pm2": "pm2",
     "prod": "NODE_ENV=production pm2 startOrRestart ./services/pm2_prod_config.json",
@@ -25,7 +25,8 @@
     "request": "^2.67.0",
     "rimraf": "^2.4.4",
     "vision": "^4.0.1",
-    "webpack": "^1.12.6"
+    "webpack": "^1.12.6",
+    "winston": "^2.1.1"
   },
   "devDependencies": {
     "babel": "^6.0.15",

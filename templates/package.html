@@ -1,7 +1,12 @@
 <% include layouts/head.html %>
 <div class="container">
   <p>All done!</p>
+  <%if (env !== 'production') { %>
   <p>We created the global variable <code><%= name %></code> at <a href="<%=path%>"><%=path%></a> :D</p>
+  <% }else { %>
+  <p>We created the global variable <code><%= name %></code> at <a href="https://jsbundler.com<%=path%>">https://jsbundler.com<%=path%></a> :D</p>
+  <% } %>
+
 </div>
 <% include layouts/tail.html %>
 
