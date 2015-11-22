@@ -168,7 +168,7 @@ server.ext('onPreResponse', function(request, reply) {
     if (process.env.NODE_ENV === 'dev') {
       winston.log('error', request.path, {error: error.output.payload.error});
     }
-
+    ctx.error = error.output.payload.error;
     if (ctx.reason) {
       // Use actual message if supplied
       ctx.reason = message || ctx.reason;

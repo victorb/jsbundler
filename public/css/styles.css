@@ -43,7 +43,42 @@ a:hover {
 }
 
 .plans {
+  border: 1px solid #DBD8EA;
   background: rgba(202, 194, 254, 0.31);
   font-size: 80%;
   padding: 10px;
+}
+
+.footer-links {
+  display: block;
+  clear: both;
+  overflow: hidden;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.footer-links_item {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.footer-links_item a {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.error {
+  color: #a94442;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.codepen {
+  margin: 20px 0;
+}
+
+code {
+  border: 1px solid #DBD8EA;
+  background: rgba(202, 194, 254, 0.31);
+  padding: 3px;
 }
