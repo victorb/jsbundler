@@ -2,10 +2,10 @@
 <div class="container">
   <%if (env !== 'production') { %>
   <p>Use variable <code><%= name %></code></p>
-  <p><a href="<%=path%>"><%=path%></a></p>
+  <p class="script"><a href="<%=path%>"><%=path%></a></p>
   <% }else { %>
   <p>Use variable <code><%= name %></code></p>
-  <p><a href="https://cdn.jsbundler.com<%=path%>">https://cdn.jsbundler.com<%=path%></a></p>
+  <p class="script"><a href="https://cdn.jsbundler.com<%=path%>">https://cdn.jsbundler.com<%=path%></a></p>
   <% } %>
 </div>
 <% include layouts/tail.html %>

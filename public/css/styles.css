@@ -77,8 +77,12 @@ a:hover {
   margin: 20px 0;
 }
 
-code {
+code, .script {
   border: 1px solid #DBD8EA;
   background: rgba(202, 194, 254, 0.31);
   padding: 3px;
+}
+
+.script {
+  overflow: scroll;
 }
