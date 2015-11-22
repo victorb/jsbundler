@@ -11,13 +11,29 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 960px;
+  width: 480px;
 }
 
 a, a:visited {
-  color: #972121;
+  color: #685BBF;
 }
 
 a:hover {
-  color: #DA3131;
+  color: #5654a8;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  background: url('/public/images/logo.svg') center;
+  background-size: 100px 100px;
+  height: 100px;
+  width: 100px;
+  text-indent: -999999em;
+}
+
+.plans {
+  background: rgba(202, 194, 254, 0.31);
+  font-size: 80%;
+  padding: 10px;
 }
